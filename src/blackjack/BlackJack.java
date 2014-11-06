@@ -20,7 +20,6 @@ public class BlackJack {
         // TODO code application logic here
         Juego j = new Juego();
         j.deal();
-        j.mostrarManos();
     }
     
 }

@@ -47,6 +47,7 @@ public class Juego {
             jugador.pedirCarta();
             dealer.pedirCarta();
         }
+        mostrarManos();
     }
 
     public boolean stand() {
