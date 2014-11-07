@@ -29,6 +29,8 @@ public class Mano {
             suma += 10;
         } else if (aux == 1) {
             suma += 11;
+        } else {
+            suma += aux;
         }
         cantidadCartas++;
     }

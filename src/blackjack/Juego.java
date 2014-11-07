@@ -102,8 +102,10 @@ public class Juego {
     
     public void mostrarManos() {
         System.out.println("Dealer");
+        System.out.println("Suma de cartas: " + dealer.getSuma());
         dealer.mostrarCartas();
         System.out.println("Jugador");
+        System.out.println("Suma de cartas: " + jugador.getSuma());
         jugador.mostrarCartas();
     }
 }
