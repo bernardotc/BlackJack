@@ -56,7 +56,8 @@ public class Juego {
 
     public boolean hit(Mano m) {
         m.pedirCarta();
-        return compararManos();
+        mostrarManos();
+        return !compararManos();
     }
 
     public boolean compararManos() {
@@ -73,6 +74,30 @@ public class Juego {
 
     public int getPuntaje() {
         return puntaje;
+    }
+    
+    public void setJugador(Mano m) {
+        jugador = m;
+    }
+
+    public Mano getJugador() {
+        return jugador;
+    }
+    
+    public void setDealer(Mano m) {
+        dealer = m;
+    }
+
+    public Mano getDealer() {
+        return dealer;
+    }
+    
+    public void setMiMazo(Mazo m) {
+        miMazo = m;
+    }
+
+    public Mazo getMiMazo() {
+        return miMazo;
     }
     
     public void mostrarManos() {
