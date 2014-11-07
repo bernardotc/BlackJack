@@ -15,7 +15,7 @@ public class Juego {
     private Mazo miMazo;
     private Mano jugador;
     private Mano dealer;
-    
+
     public void Juego() {
         puntaje = 0;
         miMazo = new Mazo();
@@ -38,7 +38,6 @@ public class Juego {
     }
 
     public void deal() {
-        puntaje--;
         miMazo = new Mazo();
         jugador = new Mano(miMazo);
         dealer = new Mano(miMazo);
@@ -51,7 +50,20 @@ public class Juego {
     }
 
     public boolean stand() {
-        return compararManos();
+        while (dealer.getSuma() < 17) {
+            hit(dealer);
+        }
+        if (dealer.getSuma() > 21) {
+            System.out.println("Dealer have busted");
+            puntaje += 1;
+        } else if (compararManos()) {
+            puntaje += 1;
+            return true;
+        } else {
+            puntaje -= 1;
+            return false;
+        }
+        return false;
     }
 
     public boolean hit(Mano m) {
@@ -61,7 +73,7 @@ public class Juego {
     }
 
     public boolean compararManos() {
-        if (jugador.getSuma() > 21 || ((jugador.getSuma() < dealer.getSuma()) && dealer.getSuma() <= 21)) {
+        if (jugador.getSuma() > 21 || ((jugador.getSuma() <= dealer.getSuma()) && dealer.getSuma() <= 21)) {
             return false;
         } else {
             return true;
@@ -75,7 +87,7 @@ public class Juego {
     public int getPuntaje() {
         return puntaje;
     }
-    
+
     public void setJugador(Mano m) {
         jugador = m;
     }
@@ -83,7 +95,7 @@ public class Juego {
     public Mano getJugador() {
         return jugador;
     }
-    
+
     public void setDealer(Mano m) {
         dealer = m;
     }
@@ -91,7 +103,7 @@ public class Juego {
     public Mano getDealer() {
         return dealer;
     }
-    
+
     public void setMiMazo(Mazo m) {
         miMazo = m;
     }
@@ -99,7 +111,7 @@ public class Juego {
     public Mazo getMiMazo() {
         return miMazo;
     }
-    
+
     public void mostrarManos() {
         System.out.println("Dealer");
         System.out.println("Suma de cartas: " + dealer.getSuma());

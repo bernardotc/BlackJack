@@ -26,31 +26,50 @@ public class BlackJack {
         BufferedReader reader = new BufferedReader(inputStreamReader);
 
         char x = 'e';
+        boolean play = true;
 
         Juego j = new Juego();
 
+        System.out.println("Score: " + j.getPuntaje());
         j.deal();
 
         do {
-            if (x != 's' || x != 'd' || x != 'h' || x != 'e') {
-                System.out.println("¿Que quieres hacer? ('d' para deal, 'h' para hit, 's' para stand y 'e' para terminar");
-                try {
-                    x = (char) reader.read();
-                } catch (IOException ex) {
-                    Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                try {
-                    reader.skip(1);
-                } catch (IOException ex) {
-                    Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            System.out.println("¿Que quieres hacer? ('d' para deal, 'h' para hit, 's' para stand y 'e' para terminar");
+            try {
+                x = (char) reader.read();
+            } catch (IOException ex) {
+                Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                reader.skip(1);
+            } catch (IOException ex) {
+                Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
-                if (x == 'd') {
-                    j.deal();
-                } else if (x == 'h') {
+            if (x == 'd') {
+                System.out.println("Score: " + j.getPuntaje());
+                j.deal();
+                if (play) {
+                    j.setPuntaje(j.getPuntaje() - 1);
+                }
+                play = true;
+            } else if (x == 'h' && play) {
+                if (j.getJugador().getSuma() <= 21) {
                     j.hit(j.getJugador());
-                } else if (x == 's') {
-                    j.stand();
+                    if (j.getJugador().getSuma() > 21) {
+                        System.out.println("You have busted");
+                        j.setPuntaje(j.getPuntaje() - 1);
+                        play = false;
+                    }
+                } else {
+                    System.out.println("Dealer won");
+                }
+            } else if (x == 's' && play) {
+                play = false;
+                if(j.stand()) {
+                    System.out.println("You won");
+                } else {
+                    System.out.println("Dealer won");
                 }
             }
         } while (x != 'e');
