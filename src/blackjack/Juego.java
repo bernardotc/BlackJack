@@ -50,8 +50,9 @@ public class Juego {
     }
 
     public boolean stand() {
+        mostrarManosFinal();
         while (dealer.getSuma() < 17) {
-            hit(dealer);
+            hit(dealer);  
         }
         if (dealer.getSuma() > 21) {
             System.out.println("Dealer have busted");
@@ -68,7 +69,12 @@ public class Juego {
 
     public boolean hit(Mano m) {
         m.pedirCarta();
-        mostrarManos();
+         if (m.equals(dealer)){
+            mostrarManosFinal();
+        }
+        else{
+            mostrarManos();
+        }
         return !compararManos();
     }
 
@@ -112,10 +118,26 @@ public class Juego {
         return miMazo;
     }
 
-    public void mostrarManos() {
+    public void mostrarManosFinal() {
         System.out.println("Dealer");
         System.out.println("Suma de cartas: " + dealer.getSuma());
         dealer.mostrarCartas();
+        System.out.println("Jugador");
+        System.out.println("Suma de cartas: " + jugador.getSuma());
+        jugador.mostrarCartas();
+    }
+    
+        public void mostrarManos() {
+        System.out.println("Dealer");
+        int val = (dealer.getCarta()).getValor();
+        if (val >= 11 && val <=13){
+            val = 10;
+        }
+        if (val == 1){
+            val = 11;
+        }
+        System.out.println("Suma de cartas: " + val );
+        dealer.mostrarCartasInicio();
         System.out.println("Jugador");
         System.out.println("Suma de cartas: " + jugador.getSuma());
         jugador.mostrarCartas();
