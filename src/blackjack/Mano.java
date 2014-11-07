@@ -22,16 +22,14 @@ public class Mano {
         misCartas = new Carta[10];
     }
 
-    public boolean validarSuma() {
-        int aux = 0;
-        for (int i = 0; i < cantidadCartas; i++) {
-            aux += misCartas[i].getValor();
-        }
-        return aux == suma;
-    }
-
     public void pedirCarta() {
         misCartas[cantidadCartas] = mazo.darCarta();
+        int aux = misCartas[cantidadCartas].getValor();
+        if (aux > 10) {
+            suma += 10;
+        } else if (aux == 1) {
+            suma += 11;
+        }
         cantidadCartas++;
     }
 
