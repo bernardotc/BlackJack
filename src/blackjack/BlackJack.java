@@ -34,7 +34,7 @@ public class BlackJack {
         j.deal();
 
         do {
-            System.out.println("¿Que quieres hacer? ('d' para deal, 'h' para hit, 's' para stand y 'e' para terminar");
+            System.out.println("¿Que quieres hacer? ('d' para deal, 'h' para hit, 's' para stand y 'e' para terminar)");
             try {
                 x = (char) reader.read();
             } catch (IOException ex) {
@@ -47,11 +47,11 @@ public class BlackJack {
             }
 
             if (x == 'd') {
-                System.out.println("Score: " + j.getPuntaje());
                 j.deal();
                 if (play) {
                     j.setPuntaje(j.getPuntaje() - 1);
                 }
+                System.out.println("Score: " + j.getPuntaje());
                 play = true;
             } else if (x == 'h' && play) {
                 if (j.getJugador().getSuma() <= 21) {
@@ -66,7 +66,7 @@ public class BlackJack {
                 }
             } else if (x == 's' && play) {
                 play = false;
-                if(j.stand()) {
+                if (j.stand()) {
                     System.out.println("You won");
                 } else {
                     System.out.println("Dealer won");
