@@ -47,11 +47,11 @@ public class BlackJack {
             }
 
             if (x == 'd') {
-                j.deal();
                 if (play) {
                     j.setPuntaje(j.getPuntaje() - 1);
                 }
                 System.out.println("Score: " + j.getPuntaje());
+                j.deal();
                 play = true;
             } else if (x == 'h' && play) {
                 if (j.getJugador().getSuma() <= 21) {

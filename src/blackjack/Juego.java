@@ -57,6 +57,7 @@ public class Juego {
         if (dealer.getSuma() > 21) {
             System.out.println("Dealer have busted");
             puntaje += 1;
+            return true;
         } else if (compararManos()) {
             puntaje += 1;
             return true;
@@ -64,7 +65,6 @@ public class Juego {
             puntaje -= 1;
             return false;
         }
-        return false;
     }
 
     public boolean hit(Mano m) {
