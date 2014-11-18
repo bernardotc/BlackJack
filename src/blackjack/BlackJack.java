@@ -22,18 +22,24 @@ public class BlackJack {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+
+        // Prepara el input para que el jugador pueda teclear sus opciones
         InputStreamReader inputStreamReader = new InputStreamReader(System.in);
         BufferedReader reader = new BufferedReader(inputStreamReader);
 
+        // Variables que van a ser usadas para saber el estado del juego
         char x = 'e';
         boolean play = true;
 
+        // Inicia el juego
         Juego j = new Juego();
 
         System.out.println("Score: " + j.getPuntaje());
         j.deal();
 
+        // Ciclo mientras el jugador quiera estar jugando.
         do {
+            // Da la oportunidad de que el usuario escoja en base a su carta
             System.out.println("¿Que quieres hacer? ('d' para deal, 'h' para hit, 's' para stand y 'e' para terminar)");
             try {
                 x = (char) reader.read();
@@ -46,6 +52,8 @@ public class BlackJack {
                 Logger.getLogger(BlackJack.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+            // Checa la opción que el usuario escogió
+            // (Deal)
             if (x == 'd') {
                 if (play) {
                     j.setPuntaje(j.getPuntaje() - 1);
@@ -53,6 +61,7 @@ public class BlackJack {
                 System.out.println("Score: " + j.getPuntaje());
                 j.deal();
                 play = true;
+                // (Hit)
             } else if (x == 'h' && play) {
                 if (j.getJugador().getSuma() <= 21) {
                     j.hit(j.getJugador());
@@ -64,6 +73,7 @@ public class BlackJack {
                 } else {
                     System.out.println("Dealer won");
                 }
+                // (Stand)
             } else if (x == 's' && play) {
                 play = false;
                 if (j.stand()) {

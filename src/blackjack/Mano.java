@@ -16,12 +16,19 @@ public class Mano {
     private int cantidadCartas;
     private Mazo mazo;
 
+    /**
+     * inicialización
+     * @param m (Mazo)
+     */
     public Mano(Mazo m) {
         mazo = m;
         suma = 0;
         misCartas = new Carta[10];
     }
 
+    /**
+     * Agrega a la lista de cartas local de mano, una carta que el mazo da.
+     */
     public void pedirCarta() {
         misCartas[cantidadCartas] = mazo.darCarta();
         int aux = misCartas[cantidadCartas].getValor();
@@ -35,26 +42,49 @@ public class Mano {
         cantidadCartas++;
     }
     
+    /**
+     * método de acceso
+     * @return misCartas (Carta)
+     */
     public Carta getCarta(){
         return misCartas[0];
     }
 
+    /**
+     * método de acceso
+     * @return suma (Suma de los valores de las cartas)
+     */
     public int getSuma() {
         return suma;
     }
 
+    /**
+     * método de modificación
+     * @param s
+     */
     public void setSuma(int s) {
         suma = s;
     }
 
+    /**
+     * método de acceso
+     * @return cantidadCartas
+     */
     public int getCantidadCartas() {
         return cantidadCartas;
     }
 
+    /**
+     * método de modificación
+     * @param c (cantidadCartas)
+     */
     public void setCantidadCartas(int c) {
         cantidadCartas = c;
     }
 
+    /**
+     * método que sirve para mostrar todas las cartas de ambas manos de una forma ordenada.
+     */
     public void mostrarCartas() {
         for (int x = 0; x < cantidadCartas; x++) {
             String palo = "";
@@ -85,6 +115,9 @@ public class Mano {
         }
     }
     
+    /**
+     * método para mostrar las manos enseñando solo una carta del dealer.
+     */
     public void mostrarCartasInicio() {
         String palo = "";
         if (misCartas[0].getPalo() == 1) {
