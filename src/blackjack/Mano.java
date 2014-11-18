@@ -34,6 +34,10 @@ public class Mano {
         }
         cantidadCartas++;
     }
+    
+    public Carta getCarta(){
+        return misCartas[0];
+    }
 
     public int getSuma() {
         return suma;
@@ -79,5 +83,34 @@ public class Mano {
 
             System.out.println("Valor: " + valor + " / Palo: " + palo);
         }
+    }
+    
+    public void mostrarCartasInicio() {
+        String palo = "";
+        if (misCartas[0].getPalo() == 1) {
+            palo = "Corazones";
+        } else if (misCartas[0].getPalo() == 2) {
+            palo = "Trebol";
+        } else if (misCartas[0].getPalo() == 3) {
+            palo = "Espadas";
+        } else {
+            palo = "Diamantes";
+        }
+
+        String valor = "";
+        if (misCartas[0].getValor() == 1) {
+            valor = "As";
+        } else if (misCartas[0].getValor() == 11) {
+            valor = "J";
+        } else if (misCartas[0].getValor() == 12) {
+            valor = "Q";
+        } else if (misCartas[0].getValor() == 13) {
+            valor = "K";
+        } else {
+            valor = misCartas[0].getValor() + "";
+        }
+
+        System.out.println("Valor: " + valor + " / Palo: " + palo);
+        System.out.println("Valor: ** / Palo: ******");
     }
 }
